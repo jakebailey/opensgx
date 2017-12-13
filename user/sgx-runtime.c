@@ -80,18 +80,21 @@ int main(int argc, char **argv)
 
     void (*aep)() = exception_handler;
 
-    int test = 0;
-    if (argc == 2)
-        sgx_enter(tcs, aep);
-    else if (argc == 3) {
-        if ((strstr(argv[1], ".sgx") != NULL) && (strstr(argv[2], ".conf") != NULL))
-            sgx_enter(tcs, aep);
-        else {
-            enclave2_call(tcs, aep, argc, argv);
-        }
-    }
-    else
-        enclave2_call(tcs, aep, argc, argv);
+    // int test = 0;
+    // if (argc == 2)
+    //     sgx_enter(tcs, aep);
+    // else if (argc == 3) {
+    //     if ((strstr(argv[1], ".sgx") != NULL) && (strstr(argv[2], ".conf") != NULL))
+    //         sgx_enter(tcs, aep);
+    //     else {
+    //         enclave2_call(tcs, aep, argc, argv);
+    //     }
+    // }
+    // else
+    //     enclave2_call(tcs, aep, argc, argv);
+
+    // Just include the arguments regardless.
+    enclave2_call(tcs, aep, argc, argv);
 
     // print report
     collecting_enclu_stat();
